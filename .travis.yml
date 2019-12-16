@@ -16,15 +16,43 @@ install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - source "$HOME/miniconda/etc/profile.d/conda.sh"
   - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
+  - conda update -q conda  -y
   # Useful for debugging any issues with conda
-  - conda info -a
+  - conda info -a  
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION dep1 dep2 ...
-  - conda activate test-environment
+  - conda create -y -q -n test-environment python=$TRAVIS_PYTHON_VERSION 
+  - conda activate test-environment  
+  - pip install pipenv
+  - pipenv install --system --deploy --ignore-pipfile
   - python setup.py install
 
-script:
-  # Your test script goes here
+stages:
+  - test
+  - name: answers
+    if: branch = master
+
+jobs:
+  include:
+    - stage: test
+      script: pytest -v
+      install:
+        - pipenv install --dev --ignore-pipfile --deploy
+        
+      before_script: # code coverage tool
+         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+         - chmod +x ./cc-test-reporter
+         - ./cc-test-reporter before-build
+      script: pytest --cov-report xml --cov-report term
+
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+    - stage: answers
+      install:  
+      - pipenv lock --clear
+      - pipenv install pandas ##
+      script:
+      # Before running, get the data from s3 using the secret
+      # credentials entered at https://travis-ci.com/csci-e-29/YOUR_PSET_REPO_NAME/settings
+      # DO NOT commit these variables to git.
+      - python3 -m cli.py
