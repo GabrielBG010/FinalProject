@@ -8,8 +8,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 ### OUTPUTS
-### What is the default name/path ? Please Insert Below.
-parser.add_argument('-o', '--output', type=str, default='xxxx', dest='output', help="name or path output file for Specified Environment(by -e or --env)")
+parser.add_argument('-o', '--output', type=str, default='output.csv', dest='output', help="name or path output file for Specified Environment(by -e or --env)")
 parser.add_argument('-e', '--env', type=str, dest='env', default='pipenv', help="name of environment for output file")
 ### What is the default name/path of the dependency tree ? Please Insert Below.
 parser.add_argument('-odt', '--out_tree', type=str, default='zxcv', dest='o_dt', help="path of dependency tree")
