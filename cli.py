@@ -1,93 +1,56 @@
 #!/usr/bin/env python
 
 import argparse
+import datetime
 
-# required defines a mandatory argument
-# default defines a default value if not specified
 
 parser = argparse.ArgumentParser()
 
-### OUTPUTS
-parser.add_argument('-o', '--output', type=str, default='output.csv', dest='output', help="name or path output file for Specified Environment(by -e or --env)")
-parser.add_argument('-e', '--env', type=str, dest='env', default='pipenv', help="name of environment for output file")
-### What is the default name/path of the dependency tree ? Please Insert Below.
-parser.add_argument('-odt', '--out_tree', type=str, default='zxcv', dest='o_dt', help="path of dependency tree")
-### What is the default name/path of the Venn Diagram ? Please Insert Below.
-parser.add_argument('-vd', '--vdg', type=str, default='zxcv', dest='vdg', help="path of venn diagram")
-
-### INPUT FILE
-parser.add_argument('-p', '--plock', type=str, default='Pipfile.lock', dest='plock', help="path of Pipfile.lock")
-
-### Name of Dependency
+parser.add_argument('-cnv', '--con_env', type=str, dest='con_env', help='name or path of Conda Env File // Type . for default.') # For Conda
+parser.add_argument('-pnv', '--pip_env', type=str, dest='pip_env', help='name or path of Pip Env File // Type . for default.')   # For Pip, not PIPENV
+parser.add_argument('-ppv', '--pnv_env', type=str, dest='pnv_env', help='name or path of Pipfile.lock // Type . for default.')   # For Pipenv
+parser.add_argument('-vd', '--vdg', type=str, dest='vdg', help="name or path of venn diagram // Type . for default")  # for Venn Diagram
+parser.add_argument('-cf', '--csv', type=str, dest='csv', help="name or path of csv file of dependencies // Type . for default") # for CSV File of Dependencies
+parser.add_argument('-dt', '--dep_tree', type=str, dest='dep_tree', help="name or path of dependency tree // Type . for default") # for Dependency Tree
 parser.add_argument('-dp', '--depen', type=str, dest='depen', nargs='*', help="name of dependency to check. if empty string, checks all")
 
 
 def main():
     args = parser.parse_args()
-    # Store desired output file name/path
-    output = args.output
-    # Store desired env name (default = pipenv)
-    env_name = args.env
-    # Store name or path of Pipfile.lock
-    pipfile_lock = args.plock
-    # Store name or path of Dependency Tree
-    dep_tree = args.o_dt
-    # Store name or path of Venn Diagram
-    vn_dgrm = args.vdg
-    # Store dependency to check
-    if args.depen:
-        # list of dependencies to check
-        depen = args.depen
 
+    # Store Conda Environment File name/path
+    con_env = args.con_env
+    # Store Pip Environment File name/path
+    pip_env = args.pip_env
+    # Store Pipfile.lock File name/path
+    pnv_env = args.pnv_env
+    # Store Venn Diagram File name/path
+    vdg = args.vdg
+    # Store Dependency CSV File name/path
+    csv = args.csv
+    # Store Dependency Tree File name/path
+    dep_tree = args.dep_tree
+    # Store Dependency Name to Check
+    depen = args.depen
 
-
-
-
-#######################################
-# To be removed for the final version #
-#######################################
-# args = parser.parse_args()
-#
-# # Store desired output file name/path
-# output = args.output
-# # Store desired env name (default = pipenv)
-# env_name = args.env
-# # Store name or path of Pipfile.lock
-# pipfile_lock = args.plock
-# # Store name or path of Dependency Tree
-# dep_tree = args.o_dt
-# # Store name or path of Venn Diagram
-# vn_dgrm = args.vdg
-# # Store dependency to check
-# if args.depen:
-#     # list of dependencies to check
-#     depen = args.depen
-
-
-
-# if output:
-#     if env_name == 'pipenv':
-#         asdf = output + ' is in a ' + env_name + ' eeeenvironment !!!'
-#         print(asdf)
-#         print('lol')
-#         txt_file = open(pipfile_lock, 'w')
-#         txt_file.write(asdf)
-#     elif env_name == 'conda':
-#         asdf = output + ' is in a ' + env_name + ' environment !!!'
-#         print(output, ' is in a ', 'not in a pipenv ', ' environment !!!')
-#         print('lol')
-#         txt_file = open(pipfile_lock, 'w')
-#         txt_file.write(asdf)
+    if con_env and con_env == '.':
+        con_env = 'condaJson.json'
+    if pip_env and pip_env == '.':
+        pip_env = 'pipJson.json'
+    if pnv_env and pnv_env == '.':
+        pnv_env = 'Pipfile.lock'
+    if vdg and vdg == '.':
+        datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        vdg = 'output/vnn_diag' + datetime_str + '.png'
+    if csv and csv == '.':
+        datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        csv = 'output/dep_output' + datetime_str + '.csv'
+    if dep_tree and dep_tree == '.':
+        datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        dep_tree = 'output/dep_tree' + datetime_str + '.txt'
+    if depen and depen[0] == '.':
+        depen = '.'
+        # other wise it's a list of dependencies
 
 
 #################################
-
-## python prac_arg.py -h
-## python prac_arg.py -o asdf
-## python prac_arg.py -o 'asdf'
-## python prac_arg.py --output asdf
-## python prac_arg.py --output 'asdf'
-## python prac_arg.py
-## python prac_arg.py -o asdf.py -e conda
-## python prac_arg.py -o asdf.py --env conda
-## python prac_arg.py -o asdf.py --env conda -p data/pipfileee.txt
