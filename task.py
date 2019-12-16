@@ -56,6 +56,7 @@ class CreateConda(Task):
     path_conda = Parameter(default="condaJSON.json")
 
     def run(self):
+
         command("conda list --json  >" + self.path_conda)
         handleConda(self.path_conda)
 
@@ -98,6 +99,11 @@ class Validation(Task):
 
     def run(self):
         inputs = self.input()
+
+        if not os.path.exists(inputs['pipenv'].path):
+            print("The Pipfile.lock file is missing")
+            return 1
+
         conda = readJson(inputs['conda'].path).rename(columns={"version": "conda_v"})
         pip = readJson(inputs['pip'].path).rename(columns={"version": "pip_v"})
         pipenvdef = readLockFile(filename=inputs['pipenv'].path).rename(columns={"version": "pipenv_def_v"})
