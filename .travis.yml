@@ -16,7 +16,7 @@ install:
   - bash miniconda.sh -b -p $HOME/miniconda
   - source "$HOME/miniconda/etc/profile.d/conda.sh"
   - hash -r
-  - conda update -q conda
+  #- conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
 
@@ -24,7 +24,7 @@ install:
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
   - conda activate test-environment
   - pip install pipenv
-    - pipenv install --system --deploy --ignore-pipfile
+  - pipenv install --system --deploy --ignore-pipfile
   - python setup.py install
 
 stages:
