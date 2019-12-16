@@ -16,7 +16,7 @@ The features designed are as below:
 
 3. Show Dependency Tree
 
-4. Plot the interesection of the environments
+4. Convert Pipfiles to Travis versions
 
 ### Final Deliverable
 
@@ -25,11 +25,14 @@ to analyze.
 
 ### To Run
 In terminal (not pipenv shell),
-bash
+```bash
 python -m rqlib
-
+```
 
 ### Limitations and Challenges
 
 Due to time constraint, it was only possible to develop for only one specific virtual environment or OS. In this case,
 in Anaconda on Windows. However, given enough resources, it may be easy to scale.
+
+
+
