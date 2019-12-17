@@ -26,7 +26,12 @@ to analyze.
 ### To Run
 In terminal (not pipenv shell),
 ```bash
-python -m rqlib
+python -m rqlib -all  # will run everything
+python -m rqlib -vg   # will only run VennGraph()
+python -m rqlib -vl   # will only run Validation()
+python -m rqlib -cd   # will only run checkdependency()
+python -m rqlib -cd -dp {name}   # will only run checkdependency() for a dependency
+python -m rqlib -tr  # will only run tree(). Not compatible with datetime stamps.
 ```
 
 ### Limitations and Challenges
