@@ -27,26 +27,33 @@ to analyze.
 This app (that is still a beta) works in a Conda Environment under Windows.
 In order to install it, this repository should be copied i your computer and then 
 Make sure that the following dependencies are installed: 
+
     - python=3.6
     - luigi==2.8.10
     - matplotlib==3.1.2
     - matplotlib-venn==0.11.5
     - pandas==0.25.3
+    
+    
 If not you have at least two different ways to do it:
 
 #### Option 1)
 Execute 
+
 pip install luigi matplotlib pandas matplotlib_venn
+
 In order to install the missing dependencies
 
 #### Option 2)
 In the directory where you cloned the repository run:
+
 conda env create --file=rqlibenv.yaml
+
 Which creates a new environment from the yaml.file
+
 Then you will need to activate the environment by executing:
+
 conda activate rqlibEnv
-
-
 
 ### To Run
 In terminal (not pipenv shell),
