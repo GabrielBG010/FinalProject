@@ -23,6 +23,30 @@ The features designed are as below:
 The end product is an app that can be executed from the command line, in which you can select a folder or environment
 to analyze.
 
+### Instalation
+This app (that is still a beta) works in a Conda Environment under Windows.
+In order to install it, this repository should be copied i your computer and then 
+Make sure that the following dependencies are installed: 
+    - python=3.6
+    - luigi==2.8.10
+    - matplotlib==3.1.2
+    - matplotlib-venn==0.11.5
+    - pandas==0.25.3
+If not you have at least two different ways to do it:
+
+#### Option 1)
+Execute 
+pip install luigi matplotlib pandas matplotlib_venn
+In order to install the missing dependencies
+
+#### Option 2)
+In the directory where you cloned the repository run:
+conda env create --file=rqlibenv.yaml
+Which creates a new environment from the yaml.file
+
+
+
+
 ### To Run
 In terminal (not pipenv shell),
 ```bash
@@ -39,5 +63,6 @@ python -m rqlib -tr  # will only run tree(). Not compatible with datetime stamps
 Due to time constraint, it was only possible to develop for only one specific virtual environment or OS. In this case,
 it was in Anaconda on Windows. However, given enough resources, it may be easy to scale.
 
+Another limitation was the integration test, since Travis does not do well with Condas Environments under Windows, we needed to simulate enough environments in our computers in order to check the integration of our code...
 
 
