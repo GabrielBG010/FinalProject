@@ -37,7 +37,7 @@ python -m rqlib -tr  # will only run tree(). Not compatible with datetime stamps
 ### Limitations and Challenges
 
 Due to time constraint, it was only possible to develop for only one specific virtual environment or OS. In this case,
-in Anaconda on Windows. However, given enough resources, it may be easy to scale.
+it was in Anaconda on Windows. However, given enough resources, it may be easy to scale.
 
 
 
