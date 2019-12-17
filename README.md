@@ -23,7 +23,7 @@ The features designed are as below:
 The end product is an app that can be executed from the command line, in which you can select a folder or environment
 to analyze.
 
-### Instalation
+### Installation
 This app (that is still a beta) works in a Conda Environment under Windows.
 In order to install it, this repository should be copied i your computer and then 
 Make sure that the following dependencies are installed: 
