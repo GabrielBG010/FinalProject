@@ -16,7 +16,8 @@ luigi = "*"
 boto3 = "*"
 onnx = "*"
 onnx-caffe2 = "*"
+matplotlib = "*"
+matplotlib-venn = "*"
 
 [requires]
 python_version = "3.7"
-
