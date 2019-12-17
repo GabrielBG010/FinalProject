@@ -10,6 +10,8 @@ from task import Validation, VennGraph, checkDependency, tree
 ### as luigi will look for a file with a different timestamp
 ### for tree, python -m -rqlib
 datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+## to mute datetime_str, uncomment line below
+# datetime_str = ''
 
 parser = argparse.ArgumentParser()
 
