@@ -43,7 +43,8 @@ In order to install the missing dependencies
 In the directory where you cloned the repository run:
 conda env create --file=rqlibenv.yaml
 Which creates a new environment from the yaml.file
-
+Then you will need to activate the environment by executing:
+conda activate rqlibEnv
 
 
 
