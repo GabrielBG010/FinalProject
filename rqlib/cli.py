@@ -6,7 +6,9 @@ import datetime
 from luigi import build, LuigiStatusCode
 from task import Validation, VennGraph, checkDependency, tree
 
-
+### use of timestamps will make using -tr alone VERY difficult
+### as luigi will look for a file with a different timestamp
+### for tree, python -m -rqlib
 datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
 parser = argparse.ArgumentParser()
@@ -25,7 +27,7 @@ parser.add_argument('-vd', '--vdg', type=str, default='output/vnn_diag' + dateti
 parser.add_argument('-cf', '--csv', type=str, default='output/dep_output' + datetime_str + '.csv', dest='csv', help="name or path of csv file of dependencies // Type . for default") # for CSV File of Dependencies
 parser.add_argument('-dt', '--dep_tree', default='output/dep_tree' + datetime_str + '.txt', type=str, dest='dep_tree', help="name or path of dependency tree // Type . for default") # for Dependency Tree
 parser.add_argument('-dc', '--dep_check', type=str, default='output/dep_check' + datetime_str + '.txt', dest='dep_check', help="name or path of dependency check // Type . for default") # for Dependency Tree
-parser.add_argument('-dp', '--dpn', type=str, default="", dest='dpn', help="name of dependency to check. if empty string, checks all")
+parser.add_argument('-dp', '--dpn', type=str, dest='dpn', help="name of dependency to check. if empty string, checks all")
 # parser.add_argument('-dp', '--dpn', type=str, dest='dpn', nargs='*', help="name of dependency to check. if empty string, checks all")  ### This accepts multiple items
 
 
@@ -86,18 +88,9 @@ def main():
         build([tree(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv, path_out_tree=dep_tree)], local_scheduler=True, detailed_summary=True)
 
     if args.all:
-        build([VennGraph(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_plot=vdg)],
+        build([VennGraph(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_plot=vdg),
+               Validation(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv),
+               checkDependency(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv, path_out_dep=dep_check),
+               tree(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv, path_out_tree=dep_tree),
+               checkDependency(dependency_to_check=dpn)],
               local_scheduler=True, detailed_summary=True)
-        build([Validation(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv)],
-              local_scheduler=True, detailed_summary=True)
-        build([checkDependency(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv,
-                               path_out_dep=dep_check, dependency_to_check=dpn)], local_scheduler=True,
-              detailed_summary=True)
-        build([tree(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv, path_out_tree=dep_tree)],
-              local_scheduler=True, detailed_summary=True)
-    # build([VennGraph(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_plot=vdg),
-    #        Validation(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv),
-    #        checkDependency(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv, path_out_dep=dep_check),
-    #        tree(path_conda=con_env, path_pip=pip_env, path_lock=pnv_env, path_out_val=csv, path_out_tree=dep_tree),
-    #        checkDependency(dependency_to_check=dpn)],
-    #       local_scheduler=True, detailed_summary=True)
