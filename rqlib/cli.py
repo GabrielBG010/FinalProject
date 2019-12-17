@@ -69,7 +69,7 @@ def main():
     if dep_check and dep_check == '.':
         dep_check = 'output/dep_check' + datetime_str + '.txt'
     if dpn and dpn == '.':
-        dpn = '.'
+        dpn = 'luigi'
 
     # if dpn were a list
     # if dpn and dpn[0] == '.':

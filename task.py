@@ -17,9 +17,10 @@ def command(cmd):
 
 
 def handleConda(filename):
-    lines = open(filename, 'r').readlines()
-    del lines[-1]
-    open(filename, 'w').writelines(lines)
+    pass
+    # lines = open(filename, 'r').readlines()
+    # del lines[-1]
+    # open(filename, 'w').writelines(lines)
 
 
 def readLockFile(filename="Pipfile.lock", mode="default"):

@@ -1,0 +1,59 @@
+certifi==2019.11.28
+cycler==0.10.0
+  - six [required: Any, installed: 1.13.0]
+docutils==0.15.2
+kiwisolver==1.1.0
+  - setuptools [required: Any, installed: 42.0.2.post20191203]
+lockfile==0.12.2
+luigi==2.8.10
+  - python-daemon [required: <2.2.0, installed: 2.1.2]
+    - docutils [required: Any, installed: 0.15.2]
+    - lockfile [required: >=0.10, installed: 0.12.2]
+    - setuptools [required: Any, installed: 42.0.2.post20191203]
+  - python-dateutil [required: >=2.7.5,<3, installed: 2.8.1]
+    - six [required: >=1.5, installed: 1.13.0]
+  - tornado [required: >=4.0,<6, installed: 5.1.1]
+matplotlib==3.1.2
+  - cycler [required: >=0.10, installed: 0.10.0]
+    - six [required: Any, installed: 1.13.0]
+  - kiwisolver [required: >=1.0.1, installed: 1.1.0]
+    - setuptools [required: Any, installed: 42.0.2.post20191203]
+  - numpy [required: >=1.11, installed: 1.17.4]
+  - pyparsing [required: >=2.0.1,!=2.1.6,!=2.1.2,!=2.0.4, installed: 2.4.5]
+  - python-dateutil [required: >=2.1, installed: 2.8.1]
+    - six [required: >=1.5, installed: 1.13.0]
+matplotlib-venn==0.11.5
+  - matplotlib [required: Any, installed: 3.1.2]
+    - cycler [required: >=0.10, installed: 0.10.0]
+      - six [required: Any, installed: 1.13.0]
+    - kiwisolver [required: >=1.0.1, installed: 1.1.0]
+      - setuptools [required: Any, installed: 42.0.2.post20191203]
+    - numpy [required: >=1.11, installed: 1.17.4]
+    - pyparsing [required: >=2.0.1,!=2.1.6,!=2.1.2,!=2.0.4, installed: 2.4.5]
+    - python-dateutil [required: >=2.1, installed: 2.8.1]
+      - six [required: >=1.5, installed: 1.13.0]
+  - numpy [required: Any, installed: 1.17.4]
+  - scipy [required: Any, installed: 1.4.0]
+    - numpy [required: >=1.13.3, installed: 1.17.4]
+numpy==1.17.4
+pandas==0.25.3
+  - numpy [required: >=1.13.3, installed: 1.17.4]
+  - python-dateutil [required: >=2.6.1, installed: 2.8.1]
+    - six [required: >=1.5, installed: 1.13.0]
+  - pytz [required: >=2017.2, installed: 2019.3]
+pip==19.3.1
+pyparsing==2.4.5
+python-daemon==2.1.2
+  - docutils [required: Any, installed: 0.15.2]
+  - lockfile [required: >=0.10, installed: 0.12.2]
+  - setuptools [required: Any, installed: 42.0.2.post20191203]
+python-dateutil==2.8.1
+  - six [required: >=1.5, installed: 1.13.0]
+pytz==2019.3
+scipy==1.4.0
+  - numpy [required: >=1.13.3, installed: 1.17.4]
+setuptools==42.0.2.post20191203
+six==1.13.0
+tornado==5.1.1
+wheel==0.33.6
+wincertstore==0.2
